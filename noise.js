@@ -8,8 +8,17 @@
 //   });
 // });
 
-//// this is for the keydown function ///
 
+// fast play
+$(document).ready( function() {
+ function playNote(note_letter) {
+   // Audio tag is formatting like ex: "aAudio"
+   var audio = $("#" + note_letter + "Audio")[0];
+   audio.currentTime = 0;
+   audio.play();
+ }});
+//// this is for the keydown function ///
+//match keys & error handling
 var noteFromKey = function(key){
   var regex = /^[a-g]$/;
   var note = (key.match(regex))? key : (" ");
@@ -36,8 +45,9 @@ $(document).ready(function(){
     var sound = audio(tone);
     sound[0].play();
   });
-    $(this).keydown(function(){
+    $(this).keydown(function(event){
     var tone = key(event);
+    // var tune = noteFromKey(tone);
     var sound = audio(tone);
     sound[0].play();
   });
